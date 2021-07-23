@@ -1,0 +1,124 @@
+<div class="formularioGeneralPersonas">
+  <form [formGroup]='personaForm' (ngSubmit)="guardar()">
+    <div class="titulosGenerales">
+      <h1>Crear Persona</h1>
+    </div>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Apellido</label>
+      <input type="text" formControlName="apellido" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Nickname</label>
+      <input type="text" formControlName="nickname" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Edad</label>
+      <input type="number" formControlName="edad" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Pais</label>
+      <select name="pais" id="pais" formControlName="pais" class="form-control">
+        <option [ngValue]="item" *ngFor="let item of paises">{{item.nombre}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Estados</label>
+      <select name="estado" id="estado" formControlName="estado" class="form-control">
+        <option [ngValue]="item" *ngFor="let item of estados">{{item.nombre}}</option>
+      </select>
+    </div>
+
+    <div class="botonGuadarGeneral">
+      <button type="submit" class="btn btn-success" [disabled]="personaForm.invalid">Guardar</button>
+    </div>
+  </form>
+</div>
+
+
+<div class="formularioGeneralPersonas">
+  <div class="titulosGenerales">
+    <h1>Personas Registradas</h1>
+  </div>
+  <div class="center">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Nickname</th>
+        <th>Edad</th>
+        <th>Pais</th>
+        <th>Estado</th>
+        <th>Opciones</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of personas">
+        <th>{{item.id}}</th>
+        <td>{{item.nombre}}</td>
+        <td>{{item.apellido}}</td>
+        <td>{{item.nickname}}</td>
+        <td>{{item.edad}}</td>
+        <td>{{item.pais.nombre}}</td>
+        <td>{{item.estado.nombre}}</td>
+        <td><button type="button" class="btn btn-warning" (click)="editarPersona(item)">Editar</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+<div class="formularioGeneralPersonas">
+  <form [formGroup]='editPersonaForm' (ngSubmit)="editar()">
+    <div class="titulosGenerales">
+      <h1>Editar Persona</h1>
+    </div>
+    
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Apellido</label>
+      <input type="text" formControlName="apellido" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Nickname</label>
+      <input type="text" formControlName="nickname" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Edad</label>
+      <input type="number" formControlName="edad" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Pais</label>
+      <select name="pais" id="pais" formControlName="pais" class="form-control">
+        <option [ngValue]="item" *ngFor="let item of paises">{{item.nombre}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Estados</label>
+      <select name="estado" id="estado" formControlName="estado" class="form-control">
+        <option [ngValue]="item" *ngFor="let item of estados">{{item.nombre}}</option>
+      </select>
+    </div>
+
+    <div class="botonGuadarGeneral">
+      <button type="submit" class="btn btn-warning" [disabled]="editPersonaForm.invalid">Guardar</button>
+    </div>
+  </form>
+</div>
+
+
+<router-outlet></router-outlet>
